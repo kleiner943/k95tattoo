@@ -1,25 +1,30 @@
- '''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     <title>K95TATTOO | Catálogo Exclusivo</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
         }
         
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
             background-color: #050505; 
             color: #ffffff;
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
         
-        /* ===== HEADER ANIMADO ===== */
         .header {
             text-align: center;
             padding: 60px 20px 40px;
@@ -38,9 +43,15 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
             animation: shimmer 3s infinite;
+            -webkit-animation: shimmer 3s infinite;
         }
         
         @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        @-webkit-keyframes shimmer {
             0% { left: -100%; }
             100% { left: 100%; }
         }
@@ -56,11 +67,16 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: shine 3s linear infinite;
+            -webkit-animation: shine 3s linear infinite;
             position: relative;
             z-index: 1;
         }
         
         @keyframes shine {
+            to { background-position: 200% center; }
+        }
+        
+        @-webkit-keyframes shine {
             to { background-position: 200% center; }
         }
         
@@ -72,20 +88,35 @@
             text-transform: uppercase;
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.5s;
+            -webkit-animation: fadeInUp 1s ease forwards 0.5s;
         }
         
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); -webkit-transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); -webkit-transform: translateY(0); }
         }
         
-        /* ===== CATÁLOGO MEJORADO ===== */
+        @-webkit-keyframes fadeInUp {
+            from { opacity: 0; -webkit-transform: translateY(20px); }
+            to { opacity: 1; -webkit-transform: translateY(0); }
+        }
+        
+        .nav-back {
+            text-align: center;
+            padding: 15px 20px;
+            background: #0a0a0a;
+            border-bottom: 1px solid #222;
+        }
+        .nav-back a {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        .nav-back a:hover { color: #d4af37; }
+        
         .catalogo {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -106,6 +137,7 @@
             display: inline-block;
             left: 50%;
             transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
         }
         
         .section-title::after {
@@ -114,12 +146,12 @@
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
             width: 60px;
             height: 2px;
             background: linear-gradient(90deg, transparent, #d4af37, transparent);
         }
         
-        /* ===== TARJETAS CON ANIMACIONES ===== */
         .tarjeta {
             background: linear-gradient(145deg, #111 0%, #1a1a1a 100%);
             border-radius: 20px;
@@ -127,6 +159,9 @@
             border: 2px solid #333;
             position: relative;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            -webkit-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
         
         .tarjeta::before {
@@ -138,12 +173,15 @@
             height: 4px;
             background: linear-gradient(90deg, #d4af37, #fff, #d4af37);
             transform: scaleX(0);
+            -webkit-transform: scaleX(0);
             transition: transform 0.4s ease;
+            -webkit-transition: -webkit-transform 0.4s ease;
             z-index: 2;
         }
         
         .tarjeta:hover::before {
             transform: scaleX(1);
+            -webkit-transform: scaleX(1);
         }
         
         .tarjeta::after {
@@ -156,6 +194,7 @@
             background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
             opacity: 0;
             transition: opacity 0.4s ease;
+            -webkit-transition: opacity 0.4s ease;
             pointer-events: none;
         }
         
@@ -165,6 +204,7 @@
         
         .tarjeta:hover {
             transform: translateY(-15px) scale(1.02);
+            -webkit-transform: translateY(-15px) scale(1.02);
             border-color: #d4af37;
             box-shadow: 0 25px 50px rgba(212, 175, 55, 0.2);
         }
@@ -175,10 +215,13 @@
             object-fit: cover;
             display: block;
             transition: transform 0.5s ease;
+            -webkit-transition: -webkit-transform 0.5s ease;
+            -webkit-backface-visibility: hidden;
         }
         
         .tarjeta:hover img {
             transform: scale(1.1);
+            -webkit-transform: scale(1.1);
         }
         
         .contenido {
@@ -202,6 +245,7 @@
             font-size: 1rem;
             line-height: 1.6;
             transition: color 0.3s ease;
+            -webkit-transition: color 0.3s ease;
         }
         
         .tarjeta:hover .contenido p {
@@ -224,6 +268,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: shine 3s linear infinite;
+            -webkit-animation: shine 3s linear infinite;
         }
         
         .btn-reserva {
@@ -237,9 +282,14 @@
             font-weight: bold;
             font-size: 0.95rem;
             transition: all 0.3s ease;
+            -webkit-transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             z-index: 1;
+            cursor: pointer;
+            touch-action: manipulation;
+            -webkit-user-select: none;
+            user-select: none;
         }
         
         .btn-reserva::before {
@@ -251,35 +301,38 @@
             height: 100%;
             background: linear-gradient(90deg, #d4af37, #b8960c);
             transition: left 0.3s ease;
+            -webkit-transition: left 0.3s ease;
             z-index: -1;
         }
         
-        .btn-reserva:hover::before {
+        .btn-reserva:hover::before,
+        .btn-reserva:active::before {
             left: 0;
         }
         
-        .btn-reserva:hover {
+        .btn-reserva:hover,
+        .btn-reserva:active {
             color: #000;
             transform: scale(1.05);
+            -webkit-transform: scale(1.05);
             box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
         }
         
-        /* ===== TARJETA PROMO ESPECIAL ===== */
         .tarjeta-promo {
             background: linear-gradient(145deg, #1a1510 0%, #0f0f0f 100%);
             border: 3px solid transparent;
             animation: borderGlowPromo 3s ease-in-out infinite;
+            -webkit-animation: borderGlowPromo 3s ease-in-out infinite;
         }
         
         @keyframes borderGlowPromo {
-            0%, 100% { 
-                border-color: #d4af37;
-                box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-            }
-            50% { 
-                border-color: #fff;
-                box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 60px rgba(212, 175, 55, 0.2);
-            }
+            0%, 100% { border-color: #d4af37; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+            50% { border-color: #fff; box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 60px rgba(212, 175, 55, 0.2); }
+        }
+        
+        @-webkit-keyframes borderGlowPromo {
+            0%, 100% { border-color: #d4af37; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+            50% { border-color: #fff; box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 60px rgba(212, 175, 55, 0.2); }
         }
         
         .tarjeta-promo .promo-text {
@@ -290,9 +343,15 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             animation: pulseText 2s ease-in-out infinite;
+            -webkit-animation: pulseText 2s ease-in-out infinite;
         }
         
         @keyframes pulseText {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        @-webkit-keyframes pulseText {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.7; }
         }
@@ -314,12 +373,14 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: none;
+            -webkit-animation: none;
         }
         
         .tarjeta-promo .btn-reserva {
             background: linear-gradient(90deg, #d4af37, #b8960c);
             color: #000;
             animation: btnPulse 2s ease-in-out infinite;
+            -webkit-animation: btnPulse 2s ease-in-out infinite;
         }
         
         @keyframes btnPulse {
@@ -327,12 +388,43 @@
             50% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
         }
         
-        .tarjeta-promo .btn-reserva:hover {
-            background: linear-gradient(90deg, #fff, #d4af37);
-            animation: none;
+        @-webkit-keyframes btnPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            50% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
         }
         
-        /* ===== SECCIÓN REDES SOCIALES ===== */
+        .tarjeta-promo .btn-reserva:hover,
+        .tarjeta-promo .btn-reserva:active {
+            background: linear-gradient(90deg, #fff, #d4af37);
+            animation: none;
+            -webkit-animation: none;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .gallery img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid #333;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+        
+        .gallery img:hover {
+            transform: scale(1.05);
+            border-color: #d4af37;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        }
+        
         .redes-section {
             background: linear-gradient(180deg, #0a0a0a 0%, #111 100%);
             border: 2px solid #333;
@@ -351,6 +443,7 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
             width: 150px;
             height: 4px;
             background: linear-gradient(90deg, transparent, #d4af37, transparent);
@@ -385,8 +478,13 @@
             font-size: 1rem;
             font-weight: 500;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            -webkit-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            touch-action: manipulation;
+            -webkit-user-select: none;
+            user-select: none;
         }
         
         .btn-red::before {
@@ -398,51 +496,61 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             transition: left 0.6s;
+            -webkit-transition: left 0.6s;
         }
         
-        .btn-red:hover::before {
+        .btn-red:hover::before,
+        .btn-red:active::before {
             left: 100%;
         }
         
-        .btn-red:hover {
+        .btn-red:hover,
+        .btn-red:active {
             transform: translateY(-8px) scale(1.1);
+            -webkit-transform: translateY(-8px) scale(1.1);
             box-shadow: 0 15px 40px rgba(0,0,0,0.5);
         }
         
         .btn-red .icon {
             font-size: 1.6rem;
             transition: transform 0.3s ease;
+            -webkit-transition: -webkit-transform 0.3s ease;
         }
         
-        .btn-red:hover .icon {
+        .btn-red:hover .icon,
+        .btn-red:active .icon {
             transform: rotate(15deg) scale(1.2);
+            -webkit-transform: rotate(15deg) scale(1.2);
         }
         
-        .btn-red.instagram:hover {
+        .btn-red.instagram:hover,
+        .btn-red.instagram:active {
             border-color: #E4405F;
             background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
             color: #fff;
         }
         
-        .btn-red.tiktok:hover {
+        .btn-red.tiktok:hover,
+        .btn-red.tiktok:active {
             border-color: #00f2ea;
             background: linear-gradient(90deg, #00f2ea, #ff0050);
             color: #fff;
         }
         
-        .btn-red.facebook:hover {
+        .btn-red.facebook:hover,
+        .btn-red.facebook:active {
             border-color: #1877F2;
             background: #1877F2;
             color: #fff;
         }
         
-        .btn-red.whatsapp:hover {
+        .btn-red.whatsapp:hover,
+        .btn-red.whatsapp:active {
             border-color: #25D366;
             background: #25D366;
             color: #fff;
         }
         
-        /* ===== SECCIÓN BARBEROS VIP ===== */
         .barberos-section {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             border: 2px solid #444;
@@ -488,9 +596,7 @@
             line-height: 1.6;
         }
         
-        .barberos-text strong {
-            color: #fff;
-        }
+        .barberos-text strong { color: #fff; }
         
         .btn-barberos {
             display: inline-flex;
@@ -505,20 +611,24 @@
             font-size: 1rem;
             font-weight: 500;
             transition: all 0.4s ease;
+            -webkit-transition: all 0.4s ease;
+            cursor: pointer;
+            touch-action: manipulation;
+            -webkit-user-select: none;
+            user-select: none;
         }
         
-        .btn-barberos:hover {
+        .btn-barberos:hover,
+        .btn-barberos:active {
             background: linear-gradient(45deg, #f09433, #e6683c, #dc2743);
             border-color: #E4405F;
             transform: translateY(-5px) scale(1.05);
+            -webkit-transform: translateY(-5px) scale(1.05);
             box-shadow: 0 10px 30px rgba(228, 64, 95, 0.4);
         }
         
-        .btn-barberos .icon {
-            font-size: 1.4rem;
-        }
+        .btn-barberos .icon { font-size: 1.4rem; }
         
-        /* ===== BOTÓN FLOTANTE WHATSAPP ===== */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -535,8 +645,15 @@
             text-decoration: none;
             box-shadow: 0 5px 25px rgba(37, 211, 102, 0.5);
             transition: all 0.3s ease;
+            -webkit-transition: all 0.3s ease;
             z-index: 1000;
             animation: pulse-green 2s infinite;
+            -webkit-animation: pulse-green 2s infinite;
+            cursor: pointer;
+            touch-action: manipulation;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-backface-visibility: hidden;
         }
         
         @keyframes pulse-green {
@@ -545,12 +662,19 @@
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
         
-        .whatsapp-float:hover {
+        @-webkit-keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        .whatsapp-float:hover,
+        .whatsapp-float:active {
             transform: scale(1.15) rotate(10deg);
+            -webkit-transform: scale(1.15) rotate(10deg);
             box-shadow: 0 8px 35px rgba(37, 211, 102, 0.7);
         }
         
-        /* ===== PIE DE PÁGINA ===== */
         .pie-de-pagina {
             text-align: center;
             padding: 40px 20px;
@@ -560,12 +684,13 @@
             margin-top: 30px;
         }
         
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; letter-spacing: 5px; }
             .subtitulo { font-size: 0.8rem; }
             .catalogo { padding: 30px 15px; }
-            .tarjeta:hover { transform: translateY(-10px) scale(1.01); }
+            .gallery { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+            .gallery img { height: 200px; }
+            .tarjeta:hover { transform: translateY(-10px) scale(1.01); -webkit-transform: translateY(-10px) scale(1.01); }
             .precio { font-size: 1.4rem; }
             .btn-red { padding: 15px 25px; }
             .whatsapp-float {
@@ -577,8 +702,13 @@
             }
         }
     </style>
+<base target="_blank">
 </head>
 <body>
+
+    <div class="nav-back">
+        <a href="index.html">← Volver al inicio</a>
+    </div>
 
     <div class="header">
         <h1>K95TATTOO</h1>
@@ -588,46 +718,44 @@
     <h2 class="section-title">Nuestros Estilos</h2>
 
     <div class="catalogo">
-
         <div class="tarjeta">
-            <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=600&q=80" alt="Tatuaje Minimalista">
+            <img src="img/k95/1.jpg" alt="Tatuaje Minimalista">
             <div class="contenido">
                 <h3>✨ Minimalista / Línea Fina</h3>
                 <p>Símbolos pequeños, firmas, fechas o líneas delicadas. Perfecto para primeros tatuajes o diseños sutiles.</p>
                 <div class="footer-tarjeta">
                     <span class="precio">$10 - $30</span>
-                    <a href="https://wa.me/593985037366?text=Hola%20Kleiner.%20Vi%20el%20cat%C3%A1logo%20y%20quiero%20agendar%20un%20tatuaje%20Minimalista%20(%2410%20-%20%2430).%20%F0%9F%96%8B" class="btn-reserva">Reservar</a>
+                    <a href="https://wa.me/593985037366?text=Hola%20Kleiner.%20Vi%20el%20cat%C3%A1logo%20y%20quiero%20agendar%20un%20tatuaje%20Minimalista%20(%2410%20-%20%2430).%20%F0%9F%96%8B" class="btn-reserva wa-link">Reservar</a>
                 </div>
             </div>
         </div>
 
         <div class="tarjeta">
-            <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=80" alt="Tatuaje Blackwork">
+            <img src="img/k95/2.jpg" alt="Tatuaje Blackwork">
             <div class="contenido">
                 <h3>⚫ Blackwork / Punta de Pluma</h3>
                 <p>Geométricos, mandalas o rellenos sólidos de negro. Alto contraste y diseños impactantes.</p>
                 <div class="footer-tarjeta">
                     <span class="precio">$40 - $100</span>
-                    <a href="https://wa.me/593985037366?text=Hola%20Kleiner.%20Vi%20el%20cat%C3%A1logo%20y%20quiero%20agendar%20un%20tatuaje%20Blackwork%20(%2440%20-%20%24100).%20%E2%9A%AB" class="btn-reserva">Reservar</a>
+                    <a href="https://wa.me/593985037366?text=Hola%20Kleiner.%20Vi%20el%20cat%C3%A1logo%20y%20quiero%20agendar%20un%20tatuaje%20Blackwork%20(%2440%20-%20%24100).%20%E2%9A%AB" class="btn-reserva wa-link">Reservar</a>
                 </div>
             </div>
         </div>
 
         <div class="tarjeta">
-            <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&q=80" alt="Tatuaje Realista">
+            <img src="img/k95/3.jpg" alt="Tatuaje Realista">
             <div class="contenido">
                 <h3>🎨 Realismo / Retratos</h3>
                 <p>Alto nivel de detalle, sombras exactas y portraits. Para quienes buscan arte verdaderamente único.</p>
                 <div class="footer-tarjeta">
                     <span class="precio">$130+</span>
-                    <a href="https://wa.me/593985037366?text=Hola%20Kleiner.%20Vi%20el%20cat%C3%A1logo%20y%20estoy%20interesado%20en%20un%20tatuaje%20Realista%20(%24130%2B).%20%F0%9F%8E%A8" class="btn-reserva">Reservar</a>
+                    <a href="https://wa.me/593985037366?text=Hola%20Kleiner.%20Vi%20el%20cat%C3%A1logo%20y%20estoy%20interesado%20en%20un%20tatuaje%20Realista%20(%24130%2B).%20%F0%9F%8E%A8" class="btn-reserva wa-link">Reservar</a>
                 </div>
             </div>
         </div>
 
-        <!-- TARJETA DE LA PROMOCIÓN ESPECIAL -->
         <div class="tarjeta tarjeta-promo">
-            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Corte de cabello">
+            <img src="img/k95/4.jpg" alt="Corte de cabello">
             <div class="contenido">
                 <h3>✂️ Promo Especial</h3>
                 <p class="promo-text">🎁 ¡Corte de Cabello GRATIS!</p>
@@ -635,51 +763,50 @@
                 <span class="exclusion">*No aplica para tatuajes Minimalistas o de Línea Fina.</span>
                 <div class="footer-tarjeta">
                     <span class="precio">GRATIS</span>
-                    <a href="https://wa.me/593985037366?text=Hola%20Kleiner.%20Quiero%20agendar%20un%20tatuaje%20(Blackwork%20o%20Realismo)%20para%20obsequiar%20mi%20corte%20de%20cabello%20gratis.%20Entiendo%20que%20no%20aplica%20en%20minimalista.%20%E2%9C%82%EF%B8%8F%F0%9F%96%8B" class="btn-reserva">¡Lo quiero!</a>
+                    <a href="https://wa.me/593985037366?text=Hola%20Kleiner.%20Quiero%20agendar%20un%20tatuaje%20(Blackwork%20o%20Realismo)%20para%20obsequiar%20mi%20corte%20de%20cabello%20gratis.%20Entiendo%20que%20no%20aplica%20en%20minimalista.%20%E2%9C%82%EF%B8%8F%F0%9F%96%8B" class="btn-reserva wa-link">¡Lo quiero!</a>
                 </div>
             </div>
         </div>
-
     </div>
 
-    <!-- SECCIÓN REDES SOCIALES CON LINKS CORRECTOS Y MENSAJE WHATSAPP ESPECÍFICO -->
+    <h2 class="section-title">Nuestros Trabajos</h2>
+    <div class="gallery" id="galleryK95"></div>
+
     <div class="redes-section">
         <h3 class="redes-title">Síguenos en Redes</h3>
         <div class="redes-container">
-            <a href="https://www.instagram.com/k95tatto/" target="_blank" class="btn-red instagram">
+            <a href="https://www.instagram.com/k95tatto/" target="_blank" rel="noopener noreferrer" class="btn-red instagram">
                 <span class="icon">📸</span>
                 <span>Instagram</span>
             </a>
-            <a href="https://www.tiktok.com/@k95tatto" target="_blank" class="btn-red tiktok">
+            <a href="https://www.tiktok.com/@k95tatto" target="_blank" rel="noopener noreferrer" class="btn-red tiktok">
                 <span class="icon">🎵</span>
                 <span>TikTok</span>
             </a>
-            <a href="https://www.facebook.com/people/k95tatto/61571486910712/" target="_blank" class="btn-red facebook">
+            <a href="https://www.facebook.com/people/k95tatto/61571486910712/" target="_blank" rel="noopener noreferrer" class="btn-red facebook">
                 <span class="icon">👤</span>
                 <span>Facebook K95</span>
             </a>
-            <!-- BOTÓN WHATSAPP CON MENSAJE ESPECÍFICO PARA SEGUIR REDES -->
-            <a href="https://wa.me/593985037366?text=Hola%20K95TATTOO!%20%F0%9F%96%8B%20Quiero%20seguir%20sus%20redes%20sociales%20y%20ver%20m%C3%A1s%20de%20su%20trabajo.%20%C2%A1Me%20pasas%20los%20links%3F" target="_blank" class="btn-red whatsapp">
+            <a href="https://wa.me/593985037366?text=Hola%20K95TATTOO!%20%F0%9F%96%8B%20Quiero%20seguir%20sus%20redes%20sociales%20y%20ver%20m%C3%A1s%20de%20su%20trabajo.%20%C2%A1Me%20pasas%20los%20links%3F" target="_blank" rel="noopener noreferrer" class="btn-red whatsapp wa-link">
                 <span class="icon">💬</span>
                 <span>WhatsApp</span>
             </a>
         </div>
     </div>
 
-    <!-- SECCIÓN BARBEROS VIP -->
     <div class="barberos-section">
         <h3 class="barberos-title">✂️ También en el Local</h3>
         <p class="barberos-text">
             Visita <strong>Barberos VIP Corporation</strong> en el mismo local.<br>
             Los mejores cortes y estilos para caballeros.
         </p>
-        <a href="https://www.instagram.com/barberos_vip_corporation?igsh=dGR2ajFrMDhkaDRs" target="_blank" class="btn-barberos">
+        <a href="https://www.instagram.com/barberos_vip_corporation?igsh=dGR2ajFrMDhkaDRs" target="_blank" rel="noopener noreferrer" class="btn-barberos">
             <span class="icon">📸</span>
             <span>Seguir a Barberos VIP</span>
         </a>
     </div>
 
-    <a href="https://wa.me/593985037366?text=Hola%20K95TATTOO!%20%F0%9F%96%8B%20Quiero%20información%20sobre%20tatuajes" class="whatsapp-float" target="_blank" title="Contáctanos por WhatsApp">
+    <a href="https://wa.me/593985037366?text=Hola%20K95TATTOO!%20%F0%9F%96%8B%20Quiero%20informaci%C3%B3n%20sobre%20tatuajes" class="whatsapp-float wa-link" target="_blank" rel="noopener noreferrer" title="Contáctanos por WhatsApp">
         💬
     </a>
 
@@ -688,5 +815,95 @@
         <p>Por Kleiner Jefferson Suárez García | Guayaquil, Ecuador</p>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            
+            function openWhatsApp(url, phone, message) {
+                var waUrl = url || 'https://wa.me/' + phone + '?text=' + encodeURIComponent(message);
+                if (isIOS && isSafari) {
+                    var iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    iframe.src = waUrl;
+                    document.body.appendChild(iframe);
+                    setTimeout(function() {
+                        window.location.href = waUrl;
+                        document.body.removeChild(iframe);
+                    }, 100);
+                    return false;
+                }
+                var newWindow = window.open(waUrl, '_blank');
+                if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                    window.location.href = waUrl;
+                }
+                return false;
+            }
+            
+            var waLinks = document.querySelectorAll('.wa-link');
+            waLinks.forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var url = this.href;
+                    var phone = this.getAttribute('data-phone');
+                    var message = this.getAttribute('data-message');
+                    openWhatsApp(url, phone, message);
+                    return false;
+                });
+                link.addEventListener('touchstart', function(e) {
+                    this.style.transform = 'scale(0.95)';
+                }, {passive: true});
+                link.addEventListener('touchend', function(e) {
+                    this.style.transform = '';
+                }, {passive: true});
+            });
+            
+            var floatBtn = document.querySelector('.whatsapp-float');
+            if (floatBtn) {
+                floatBtn.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(1.15) rotate(10deg)';
+                }, {passive: true});
+                floatBtn.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                }, {passive: true});
+            }
+
+            var gallery = document.getElementById('galleryK95');
+            var imagenes = [
+                'img/k95/1.jpg',
+                'img/k95/2.jpg',
+                'img/k95/3.jpg',
+                'img/k95/4.jpg',
+                'img/k95/5.jpg',
+                'img/k95/angelnegro.jpg',
+                'img/k95/fuckyou1part.jpg',
+                'img/k95/fuckyou2part.jpg',
+                'img/k95/jf.jpg',
+                'img/k95/mariposa1part.jpg',
+                'img/k95/mariposa2part.jpg',
+                'img/k95/tattode$10.jpg',
+                'img/k95/tattode$50-$100.1part.jpg',
+                'img/k95/tattode$50-$100.2part.jpg',
+                'img/k95/tattode$50-$100.3part.jpg',
+                'img/k95/tattode$50-$100.4part.jpg',
+                'img/k95/tattode$50-$100.6part.jpg',
+                'img/k95/tattode$50-$100.7part.jpg',
+                'img/k95/tattode$80-$120.jpg.jpeg',
+                'img/k95/tatuajede$70-$100.1part.jpg .jpeg',
+                'img/k95/tatuajede$70-$100.2part.jpg .jpeg',
+                'img/k95/unnamed.png'
+            ];
+            imagenes.forEach(function(src) {
+                var img = document.createElement('img');
+                img.src = src;
+                img.alt = 'Trabajo K95TATTOO';
+                img.loading = 'lazy';
+                img.addEventListener('click', function() { window.open(this.src, '_blank'); });
+                gallery.appendChild(img);
+            });
+        });
+    </script>
+
 </body>
-</html>'''
+</html>
