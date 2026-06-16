@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="format-detection" content="telephone=no">
@@ -13,21 +13,20 @@
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
         }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-            background-color: #050505; 
+            background-color: #050505;
             color: #ffffff;
             line-height: 1.6;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
         }
         
+        /* HEADER */
         .header {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 50px 20px 30px;
             background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
             border-bottom: 2px solid #d4af37;
             position: relative;
@@ -43,7 +42,6 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
             animation: shimmer 3s infinite;
-            -webkit-animation: shimmer 3s infinite;
         }
         
         @keyframes shimmer {
@@ -51,54 +49,36 @@
             100% { left: 100%; }
         }
         
-        @-webkit-keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-        
         h1 {
-            font-size: 3.5rem;
-            letter-spacing: 10px;
+            font-size: 3rem;
+            letter-spacing: 8px;
             margin: 0;
             text-transform: uppercase;
             background: linear-gradient(90deg, #d4af37, #fff, #d4af37);
             background-size: 200% auto;
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: transparent;
             animation: shine 3s linear infinite;
-            -webkit-animation: shine 3s linear infinite;
-            position: relative;
-            z-index: 1;
         }
         
         @keyframes shine {
             to { background-position: 200% center; }
         }
         
-        @-webkit-keyframes shine {
-            to { background-position: 200% center; }
-        }
-        
         .subtitulo {
             color: #d4af37;
             letter-spacing: 4px;
-            font-size: 1rem;
-            margin-top: 15px;
+            font-size: 0.9rem;
+            margin-top: 10px;
             text-transform: uppercase;
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.5s;
-            -webkit-animation: fadeInUp 1s ease forwards 0.5s;
         }
         
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); -webkit-transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); -webkit-transform: translateY(0); }
-        }
-        
-        @-webkit-keyframes fadeInUp {
-            from { opacity: 0; -webkit-transform: translateY(20px); }
-            to { opacity: 1; -webkit-transform: translateY(0); }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .nav-back {
@@ -107,6 +87,7 @@
             background: #0a0a0a;
             border-bottom: 1px solid #222;
         }
+        
         .nav-back a {
             color: #888;
             text-decoration: none;
@@ -115,14 +96,16 @@
             text-transform: uppercase;
             transition: color 0.3s ease;
         }
+        
         .nav-back a:hover { color: #d4af37; }
         
+        /* CATÁLOGO */
         .catalogo {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            padding: 50px 20px;
-            max-width: 1000px;
+            padding: 40px 20px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         
@@ -137,7 +120,6 @@
             display: inline-block;
             left: 50%;
             transform: translateX(-50%);
-            -webkit-transform: translateX(-50%);
         }
         
         .section-title::after {
@@ -146,12 +128,12 @@
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            -webkit-transform: translateX(-50%);
             width: 60px;
             height: 2px;
             background: linear-gradient(90deg, transparent, #d4af37, transparent);
         }
         
+        /* TARJETAS */
         .tarjeta {
             background: linear-gradient(145deg, #111 0%, #1a1a1a 100%);
             border-radius: 20px;
@@ -159,9 +141,6 @@
             border: 2px solid #333;
             position: relative;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            -webkit-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
         }
         
         .tarjeta::before {
@@ -173,40 +152,18 @@
             height: 4px;
             background: linear-gradient(90deg, #d4af37, #fff, #d4af37);
             transform: scaleX(0);
-            -webkit-transform: scaleX(0);
             transition: transform 0.4s ease;
-            -webkit-transition: -webkit-transform 0.4s ease;
             z-index: 2;
         }
         
         .tarjeta:hover::before {
             transform: scaleX(1);
-            -webkit-transform: scaleX(1);
-        }
-        
-        .tarjeta::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            -webkit-transition: opacity 0.4s ease;
-            pointer-events: none;
-        }
-        
-        .tarjeta:hover::after {
-            opacity: 1;
         }
         
         .tarjeta:hover {
-            transform: translateY(-15px) scale(1.02);
-            -webkit-transform: translateY(-15px) scale(1.02);
+            transform: translateY(-10px) scale(1.02);
             border-color: #d4af37;
-            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
         }
         
         .tarjeta img {
@@ -215,13 +172,10 @@
             object-fit: cover;
             display: block;
             transition: transform 0.5s ease;
-            -webkit-transition: -webkit-transform 0.5s ease;
-            -webkit-backface-visibility: hidden;
         }
         
         .tarjeta:hover img {
-            transform: scale(1.1);
-            -webkit-transform: scale(1.1);
+            transform: scale(1.05);
         }
         
         .contenido {
@@ -232,20 +186,19 @@
         
         .contenido h3 {
             margin: 0 0 12px 0;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #fff;
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
         
         .contenido p {
             margin: 0 0 20px 0;
             color: #aaa;
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.6;
-            transition: color 0.3s ease;
-            -webkit-transition: color 0.3s ease;
         }
         
         .tarjeta:hover .contenido p {
@@ -256,7 +209,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
         }
         
         .precio {
@@ -265,10 +220,9 @@
             background: linear-gradient(90deg, #d4af37, #fff, #d4af37);
             background-size: 200% auto;
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: transparent;
             animation: shine 3s linear infinite;
-            -webkit-animation: shine 3s linear infinite;
         }
         
         .btn-reserva {
@@ -276,20 +230,16 @@
             background: transparent;
             color: #d4af37;
             border: 2px solid #d4af37;
-            padding: 12px 25px;
+            padding: 10px 20px;
             text-decoration: none;
             border-radius: 30px;
             font-weight: bold;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
-            -webkit-transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             z-index: 1;
             cursor: pointer;
-            touch-action: manipulation;
-            -webkit-user-select: none;
-            user-select: none;
         }
         
         .btn-reserva::before {
@@ -301,105 +251,20 @@
             height: 100%;
             background: linear-gradient(90deg, #d4af37, #b8960c);
             transition: left 0.3s ease;
-            -webkit-transition: left 0.3s ease;
             z-index: -1;
         }
         
-        .btn-reserva:hover::before,
-        .btn-reserva:active::before {
+        .btn-reserva:hover::before {
             left: 0;
         }
         
-        .btn-reserva:hover,
-        .btn-reserva:active {
+        .btn-reserva:hover {
             color: #000;
             transform: scale(1.05);
-            -webkit-transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
         }
         
-        .tarjeta-promo {
-            background: linear-gradient(145deg, #1a1510 0%, #0f0f0f 100%);
-            border: 3px solid transparent;
-            animation: borderGlowPromo 3s ease-in-out infinite;
-            -webkit-animation: borderGlowPromo 3s ease-in-out infinite;
-        }
-        
-        @keyframes borderGlowPromo {
-            0%, 100% { border-color: #d4af37; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
-            50% { border-color: #fff; box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 60px rgba(212, 175, 55, 0.2); }
-        }
-        
-        @-webkit-keyframes borderGlowPromo {
-            0%, 100% { border-color: #d4af37; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
-            50% { border-color: #fff; box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 60px rgba(212, 175, 55, 0.2); }
-        }
-        
-        .tarjeta-promo .promo-text {
-            color: #d4af37;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            animation: pulseText 2s ease-in-out infinite;
-            -webkit-animation: pulseText 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulseText {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-        
-        @-webkit-keyframes pulseText {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-        
-        .tarjeta-promo .exclusion {
-            color: #ff6b6b;
-            font-size: 0.9rem;
-            font-weight: bold;
-            margin-top: -5px;
-            margin-bottom: 15px;
-            display: block;
-            font-style: italic;
-        }
-        
-        .tarjeta-promo .precio {
-            font-size: 2rem;
-            color: #4cd964;
-            background: linear-gradient(90deg, #4cd964, #7ee787);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: none;
-            -webkit-animation: none;
-        }
-        
-        .tarjeta-promo .btn-reserva {
-            background: linear-gradient(90deg, #d4af37, #b8960c);
-            color: #000;
-            animation: btnPulse 2s ease-in-out infinite;
-            -webkit-animation: btnPulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes btnPulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
-            50% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
-        }
-        
-        @-webkit-keyframes btnPulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
-            50% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
-        }
-        
-        .tarjeta-promo .btn-reserva:hover,
-        .tarjeta-promo .btn-reserva:active {
-            background: linear-gradient(90deg, #fff, #d4af37);
-            animation: none;
-            -webkit-animation: none;
-        }
-        
+        /* GALERÍA */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -420,16 +285,17 @@
         }
         
         .gallery img:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
             border-color: #d4af37;
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
         }
         
+        /* REDES SOCIALES */
         .redes-section {
             background: linear-gradient(180deg, #0a0a0a 0%, #111 100%);
             border: 2px solid #333;
             border-radius: 30px;
-            padding: 50px 40px;
+            padding: 40px 30px;
             margin: 50px auto;
             max-width: 800px;
             text-align: center;
@@ -443,7 +309,6 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            -webkit-transform: translateX(-50%);
             width: 150px;
             height: 4px;
             background: linear-gradient(90deg, transparent, #d4af37, transparent);
@@ -451,7 +316,7 @@
         
         .redes-title {
             color: #d4af37;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             text-transform: uppercase;
             letter-spacing: 4px;
             margin-bottom: 30px;
@@ -461,101 +326,46 @@
         .redes-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
         }
         
         .btn-red {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             background: #1a1a1a;
             border: 2px solid #444;
             color: #fff;
             text-decoration: none;
-            padding: 18px 30px;
+            padding: 15px 25px;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            -webkit-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
             cursor: pointer;
-            touch-action: manipulation;
-            -webkit-user-select: none;
-            user-select: none;
         }
         
-        .btn-red::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s;
-            -webkit-transition: left 0.6s;
-        }
-        
-        .btn-red:hover::before,
-        .btn-red:active::before {
-            left: 100%;
-        }
-        
-        .btn-red:hover,
-        .btn-red:active {
-            transform: translateY(-8px) scale(1.1);
-            -webkit-transform: translateY(-8px) scale(1.1);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        .btn-red:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
         
         .btn-red .icon {
-            font-size: 1.6rem;
-            transition: transform 0.3s ease;
-            -webkit-transition: -webkit-transform 0.3s ease;
+            font-size: 1.4rem;
         }
         
-        .btn-red:hover .icon,
-        .btn-red:active .icon {
-            transform: rotate(15deg) scale(1.2);
-            -webkit-transform: rotate(15deg) scale(1.2);
-        }
+        .btn-red.instagram:hover { border-color: #E4405F; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .btn-red.tiktok:hover { border-color: #00f2ea; background: linear-gradient(90deg, #00f2ea, #ff0050); }
+        .btn-red.facebook:hover { border-color: #1877F2; background: #1877F2; }
+        .btn-red.whatsapp:hover { border-color: #25D366; background: #25D366; }
         
-        .btn-red.instagram:hover,
-        .btn-red.instagram:active {
-            border-color: #E4405F;
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            color: #fff;
-        }
-        
-        .btn-red.tiktok:hover,
-        .btn-red.tiktok:active {
-            border-color: #00f2ea;
-            background: linear-gradient(90deg, #00f2ea, #ff0050);
-            color: #fff;
-        }
-        
-        .btn-red.facebook:hover,
-        .btn-red.facebook:active {
-            border-color: #1877F2;
-            background: #1877F2;
-            color: #fff;
-        }
-        
-        .btn-red.whatsapp:hover,
-        .btn-red.whatsapp:active {
-            border-color: #25D366;
-            background: #25D366;
-            color: #fff;
-        }
-        
+        /* BARBEROS */
         .barberos-section {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             border: 2px solid #444;
             border-radius: 25px;
-            padding: 40px 30px;
+            padding: 35px 25px;
             margin: 40px auto;
             max-width: 800px;
             text-align: center;
@@ -568,7 +378,7 @@
             position: absolute;
             top: 15px;
             left: 20px;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             opacity: 0.3;
         }
         
@@ -577,13 +387,13 @@
             position: absolute;
             top: 15px;
             right: 20px;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             opacity: 0.3;
         }
         
         .barberos-title {
             color: #c0c0c0;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 15px;
@@ -591,7 +401,7 @@
         
         .barberos-text {
             color: #888;
-            font-size: 1rem;
+            font-size: 0.95rem;
             margin-bottom: 25px;
             line-height: 1.6;
         }
@@ -601,59 +411,47 @@
         .btn-barberos {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             background: linear-gradient(135deg, #333, #1a1a1a);
             border: 2px solid #666;
             color: #fff;
             text-decoration: none;
-            padding: 15px 30px;
+            padding: 12px 25px;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: all 0.4s ease;
-            -webkit-transition: all 0.4s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
-            touch-action: manipulation;
-            -webkit-user-select: none;
-            user-select: none;
         }
         
-        .btn-barberos:hover,
-        .btn-barberos:active {
+        .btn-barberos:hover {
             background: linear-gradient(45deg, #f09433, #e6683c, #dc2743);
             border-color: #E4405F;
-            transform: translateY(-5px) scale(1.05);
-            -webkit-transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(228, 64, 95, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(228, 64, 95, 0.3);
         }
         
-        .btn-barberos .icon { font-size: 1.4rem; }
+        .btn-barberos .icon { font-size: 1.2rem; }
         
+        /* WHATSAPP FLOTANTE */
         .whatsapp-float {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 25px;
+            right: 25px;
             background: linear-gradient(135deg, #25D366, #128C7E);
             color: #fff;
-            width: 65px;
-            height: 65px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
+            font-size: 2rem;
             text-decoration: none;
-            box-shadow: 0 5px 25px rgba(37, 211, 102, 0.5);
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
             transition: all 0.3s ease;
-            -webkit-transition: all 0.3s ease;
             z-index: 1000;
             animation: pulse-green 2s infinite;
-            -webkit-animation: pulse-green 2s infinite;
-            cursor: pointer;
-            touch-action: manipulation;
-            -webkit-user-select: none;
-            user-select: none;
-            -webkit-backface-visibility: hidden;
         }
         
         @keyframes pulse-green {
@@ -662,47 +460,35 @@
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
         
-        @-webkit-keyframes pulse-green {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
         }
         
-        .whatsapp-float:hover,
-        .whatsapp-float:active {
-            transform: scale(1.15) rotate(10deg);
-            -webkit-transform: scale(1.15) rotate(10deg);
-            box-shadow: 0 8px 35px rgba(37, 211, 102, 0.7);
-        }
-        
+        /* FOOTER */
         .pie-de-pagina {
             text-align: center;
-            padding: 40px 20px;
+            padding: 35px 20px;
             color: #555;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             border-top: 1px solid #222;
             margin-top: 30px;
         }
         
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; letter-spacing: 5px; }
+            h1 { font-size: 2rem; letter-spacing: 5px; }
             .subtitulo { font-size: 0.8rem; }
-            .catalogo { padding: 30px 15px; }
+            .catalogo { padding: 30px 15px; gap: 20px; }
             .gallery { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
-            .gallery img { height: 200px; }
-            .tarjeta:hover { transform: translateY(-10px) scale(1.01); -webkit-transform: translateY(-10px) scale(1.01); }
-            .precio { font-size: 1.4rem; }
-            .btn-red { padding: 15px 25px; }
-            .whatsapp-float {
-                width: 55px;
-                height: 55px;
-                font-size: 1.8rem;
-                bottom: 20px;
-                right: 20px;
-            }
+            .gallery img { height: 180px; }
+            .precio { font-size: 1.5rem; }
+            .btn-red { padding: 12px 18px; font-size: 0.8rem; }
+            .whatsapp-float { width: 50px; height: 50px; font-size: 1.6rem; bottom: 20px; right: 20px; }
+            .contenido h3 { font-size: 1.2rem; }
         }
     </style>
-<base target="_blank">
+    <base target="_blank">
 </head>
 <body>
 
@@ -719,7 +505,7 @@
 
     <div class="catalogo">
         <div class="tarjeta">
-            <img src="img/k95/1.jpg" alt="Tatuaje Minimalista">
+            <img src="img/k95/1.jpg" alt="Tatuaje Minimalista" loading="lazy">
             <div class="contenido">
                 <h3>✨ Minimalista / Línea Fina</h3>
                 <p>Símbolos pequeños, firmas, fechas o líneas delicadas. Perfecto para primeros tatuajes o diseños sutiles.</p>
@@ -731,7 +517,7 @@
         </div>
 
         <div class="tarjeta">
-            <img src="img/k95/2.jpg" alt="Tatuaje Blackwork">
+            <img src="img/k95/2.jpg" alt="Tatuaje Blackwork" loading="lazy">
             <div class="contenido">
                 <h3>⚫ Blackwork / Punta de Pluma</h3>
                 <p>Geométricos, mandalas o rellenos sólidos de negro. Alto contraste y diseños impactantes.</p>
@@ -743,27 +529,13 @@
         </div>
 
         <div class="tarjeta">
-            <img src="img/k95/3.jpg" alt="Tatuaje Realista">
+            <img src="img/k95/3.jpg" alt="Tatuaje Realista" loading="lazy">
             <div class="contenido">
                 <h3>🎨 Realismo / Retratos</h3>
                 <p>Alto nivel de detalle, sombras exactas y portraits. Para quienes buscan arte verdaderamente único.</p>
                 <div class="footer-tarjeta">
                     <span class="precio">$130+</span>
                     <a href="https://wa.me/593985037366?text=Hola%20Kleiner.%20Vi%20el%20cat%C3%A1logo%20y%20estoy%20interesado%20en%20un%20tatuaje%20Realista%20(%24130%2B).%20%F0%9F%8E%A8" class="btn-reserva wa-link">Reservar</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="tarjeta tarjeta-promo">
-            <img src="img/k95/4.jpg" alt="Corte de cabello">
-            <div class="contenido">
-                <h3>✂️ Promo Especial</h3>
-                <p class="promo-text">🎁 ¡Corte de Cabello GRATIS!</p>
-                <p>Agenda tu tatuaje de <strong>Blackwork o Realismo</strong> y llévate un corte de cabello de regalo cortesía de Barberos VIP.</p>
-                <span class="exclusion">*No aplica para tatuajes Minimalistas o de Línea Fina.</span>
-                <div class="footer-tarjeta">
-                    <span class="precio">GRATIS</span>
-                    <a href="https://wa.me/593985037366?text=Hola%20Kleiner.%20Quiero%20agendar%20un%20tatuaje%20(Blackwork%20o%20Realismo)%20para%20obsequiar%20mi%20corte%20de%20cabello%20gratis.%20Entiendo%20que%20no%20aplica%20en%20minimalista.%20%E2%9C%82%EF%B8%8F%F0%9F%96%8B" class="btn-reserva wa-link">¡Lo quiero!</a>
                 </div>
             </div>
         </div>
@@ -787,7 +559,7 @@
                 <span class="icon">👤</span>
                 <span>Facebook K95</span>
             </a>
-            <a href="https://wa.me/593985037366?text=Hola%20K95TATTOO!%20%F0%9F%96%8B%20Quiero%20seguir%20sus%20redes%20sociales%20y%20ver%20m%C3%A1s%20de%20su%20trabajo.%20%C2%A1Me%20pasas%20los%20links%3F" target="_blank" rel="noopener noreferrer" class="btn-red whatsapp wa-link">
+            <a href="https://wa.me/593985037366?text=Hola%20K95TATTOO!%20%F0%9F%96%8B%20Quiero%20seguir%20sus%20redes%20sociales%20y%20ver%20m%C3%A1s%20de%20su%20trabajo." class="btn-red whatsapp wa-link">
                 <span class="icon">💬</span>
                 <span>WhatsApp</span>
             </a>
@@ -816,84 +588,52 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        (function() {
+            // Manejo de WhatsApp en iOS
             var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
             var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
             
-            function openWhatsApp(url, phone, message) {
-                var waUrl = url || 'https://wa.me/' + phone + '?text=' + encodeURIComponent(message);
+            function openWhatsApp(url) {
                 if (isIOS && isSafari) {
                     var iframe = document.createElement('iframe');
                     iframe.style.display = 'none';
-                    iframe.src = waUrl;
+                    iframe.src = url;
                     document.body.appendChild(iframe);
                     setTimeout(function() {
-                        window.location.href = waUrl;
+                        window.location.href = url;
                         document.body.removeChild(iframe);
                     }, 100);
                     return false;
                 }
-                var newWindow = window.open(waUrl, '_blank');
+                var newWindow = window.open(url, '_blank');
                 if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-                    window.location.href = waUrl;
+                    window.location.href = url;
                 }
                 return false;
             }
             
-            var waLinks = document.querySelectorAll('.wa-link');
-            waLinks.forEach(function(link) {
+            // Asignar eventos a botones WhatsApp
+            document.querySelectorAll('.wa-link').forEach(function(link) {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    e.stopPropagation();
-                    var url = this.href;
-                    var phone = this.getAttribute('data-phone');
-                    var message = this.getAttribute('data-message');
-                    openWhatsApp(url, phone, message);
-                    return false;
+                    openWhatsApp(this.href);
                 });
-                link.addEventListener('touchstart', function(e) {
-                    this.style.transform = 'scale(0.95)';
-                }, {passive: true});
-                link.addEventListener('touchend', function(e) {
-                    this.style.transform = '';
-                }, {passive: true});
             });
             
-            var floatBtn = document.querySelector('.whatsapp-float');
-            if (floatBtn) {
-                floatBtn.addEventListener('touchstart', function() {
-                    this.style.transform = 'scale(1.15) rotate(10deg)';
-                }, {passive: true});
-                floatBtn.addEventListener('touchend', function() {
-                    this.style.transform = '';
-                }, {passive: true});
-            }
-
+            // Galería de imágenes
             var gallery = document.getElementById('galleryK95');
             var imagenes = [
-                'img/k95/1.jpg',
-                'img/k95/2.jpg',
-                'img/k95/3.jpg',
-                'img/k95/4.jpg',
-                'img/k95/5.jpg',
-                'img/k95/angelnegro.jpg',
-                'img/k95/fuckyou1part.jpg',
-                'img/k95/fuckyou2part.jpg',
-                'img/k95/jf.jpg',
-                'img/k95/mariposa1part.jpg',
-                'img/k95/mariposa2part.jpg',
-                'img/k95/tattode$10.jpg',
-                'img/k95/tattode$50-$100.1part.jpg',
-                'img/k95/tattode$50-$100.2part.jpg',
-                'img/k95/tattode$50-$100.3part.jpg',
-                'img/k95/tattode$50-$100.4part.jpg',
-                'img/k95/tattode$50-$100.6part.jpg',
-                'img/k95/tattode$50-$100.7part.jpg',
-                'img/k95/tattode$80-$120.jpg.jpeg',
-                'img/k95/tatuajede$70-$100.1part.jpg .jpeg',
-                'img/k95/tatuajede$70-$100.2part.jpg .jpeg',
-                'img/k95/unnamed.png'
+                'img/k95/1.jpg', 'img/k95/2.jpg', 'img/k95/3.jpg', 'img/k95/4.jpg',
+                'img/k95/5.jpg', 'img/k95/angelnegro.jpg', 'img/k95/fuckyou1part.jpg',
+                'img/k95/fuckyou2part.jpg', 'img/k95/jf.jpg', 'img/k95/mariposa1part.jpg',
+                'img/k95/mariposa2part.jpg', 'img/k95/tattode$10.jpg',
+                'img/k95/tattode$50-$100.1part.jpg', 'img/k95/tattode$50-$100.2part.jpg',
+                'img/k95/tattode$50-$100.3part.jpg', 'img/k95/tattode$50-$100.4part.jpg',
+                'img/k95/tattode$50-$100.6part.jpg', 'img/k95/tattode$50-$100.7part.jpg',
+                'img/k95/tattode$80-$120.jpg.jpeg', 'img/k95/tatuajede$70-$100.1part.jpg .jpeg',
+                'img/k95/tatuajede$70-$100.2part.jpg .jpeg', 'img/k95/unnamed.png'
             ];
+            
             imagenes.forEach(function(src) {
                 var img = document.createElement('img');
                 img.src = src;
@@ -902,7 +642,7 @@
                 img.addEventListener('click', function() { window.open(this.src, '_blank'); });
                 gallery.appendChild(img);
             });
-        });
+        })();
     </script>
 
 </body>
